@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>excel</title>
+</head>
+<body>
+  <h4>excel</h4>
+  <div id="data1"></div> 
+  <script>
+  fetch('/getExcelJosn').then(res=>res.json().then(data=>{
+     document.getElementById('data').innerHTML =JSON.stringify(data)
+  }))
+  </script> 
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script >
+  function UP(){
+  
+    var formData = new FormData();
+      formData.append("photo",$("#file")[0].files[0]);
+      formData.append("service",'App.Passion.UploadFile');
+      $.ajax({
+        url:'./uploadExcel',   type:'POST',  data: formData,
+          contentType: false,  processData: false,
+          success:function(res){ 
+            console.log(res);
+          },error(){}
+      })
+    }
+     
+ 
+ </script>
+ <input id="file" type="file"/>
+ <button onclick="UP()">UP </button>
+
+  <script>
+  function postData(){
+      var formData = new FormData();
+      formData.append("photo",$("#photo")[0].files[0]);
+      formData.append("service",'App.Passion.UploadFile');
+      $.ajax({
+        url:'http://106.12.144.8:7001/uploadExcel',
+          type:'POST',
+          dataType:'json',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success:function(res){ 
+            console.log(res);
+          },error(){}
+      })
+    }
+     
+</script>  
+  
+  
+</body>
+</html>
