@@ -10,7 +10,9 @@ module.exports = app => {
   router.get('/login', controller.controllerLogin.judgeLogin);
 
   router.get('/excel', controller.controllerExcel.excelPage);
-  router.get('/getExcelJosn', controller.controllerExcel.getExcelJosn);
   router.post('/uploadExcel', controller.controllerExcel.uploadExcel); 
+
+  router.get('/getExcelJosn', controller.controllerExcel.getExcelJosn);
+  router.get('/updateExcel', controller.controllerExcel.updateExcel);
   router.get('/deleteExcel', controller.controllerExcel.deleteExcel); 
 };

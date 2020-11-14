@@ -10,17 +10,16 @@
   <h4>excel</h4>
   <div id="data1"></div> 
   <script>
-  fetch('/getExcelJosn').then(res=>res.json().then(data=>{
-     document.getElementById('data').innerHTML =JSON.stringify(data)
-  }))
+  // fetch('/getExcelJosn?table=tc&page=1&pageSize=11&search=').then(res=>res.json().then(data=>{
+  //    document.getElementById('data').innerHTML =JSON.stringify(data)
+  // }))
   </script> 
  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script >
-  function UP(){
-  
+  function UP(table){ 
     var formData = new FormData();
-      formData.append("photo",$("#file")[0].files[0]);
-      formData.append("service",'App.Passion.UploadFile');
+      formData.append("file",$("#file")[0].files[0]);
+      formData.append("table",table);
       $.ajax({
         url:'./uploadExcel',   type:'POST',  data: formData,
           contentType: false,  processData: false,
@@ -33,8 +32,11 @@
  
  </script>
  <input id="file" type="file"/>
- <button onclick="UP()">UP </button>
-
+ <button onclick="UP('ta')"> UP table1 </button>
+ <button onclick="UP('tb')"> UP table2 </button>
+ <button onclick="UP('tc')"> UP table3 </button>
+ <button onclick="UP('td')"> UP table4 </button>
+ <button onclick="UP('te')"> UP table5 </button>
   <script>
   function postData(){
       var formData = new FormData();
