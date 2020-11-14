@@ -34,8 +34,15 @@ class controllerExcel extends Controller {
     await this.ctx.render('excel');
   }
   async getExcelJosn() {
-    const data = await this.app.mysql.select( tableName ) 
-    this.ctx.body = data;
+    try {
+      const {search,page,pageSize,}= this.ctx.query; 
+    //const data = await this.app.mysql.select( tableName ) 
+    const count = await this.app.mysql.query(`select count(id) as count from ${tableName} `)
+    const data = await this.app.mysql.query(`select * from  ${tableName}  where  number like ? or name like ? limit ?,?`,[`%${search}%`,`%${search}%`,(page-1)* pageSize,1*pageSize]);
+    this.ctx.body = { count:count[0].count, data,page,pageSize};
+    } catch (error) {
+      console.log('getExcelJosn()',error)
+    }
   }
   async uploadExcelTest() { 
     const file = this.ctx.request.files[0]; 
@@ -53,7 +60,9 @@ class controllerExcel extends Controller {
       const xlsx = require('node-xlsx');  
       let excel = xlsx.parse(file.filepath);
       let firstPage = excel[0].data    
+      console.log( firstPage.length)
       for(let i = 1;  i <  firstPage.length ;i++){ 
+        if(!firstPage[i][0]) break;
         await this.app.mysql.insert(tableName,col(firstPage[i]))
       } 
     } catch (error) {
