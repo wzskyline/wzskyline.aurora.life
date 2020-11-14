@@ -6,6 +6,7 @@ const tableName = 't_excel_a';
 t_excel_a
 CREATE TABLE IF NOT EXISTS `t_excel_a`(
    `id` INT UNSIGNED AUTO_INCREMENT,
+   `number` VARCHAR(100),
    `name` VARCHAR(100),
    `mark` VARCHAR(500),
    `unit` VARCHAR(300),
@@ -47,20 +48,27 @@ class controllerExcel extends Controller {
     this.ctx.body = { message:'ok'};
   }
   async uploadExcel() { 
-    const file = this.ctx.request.files[0]; 
-    const xlsx = require('node-xlsx');  
-    let excel = xlsx.parse(file.filepath);
-    let firstPage = excel[0].data    
-    for(let i = 0;  i <  firstPage.length ;i++){ 
-      await this.app.mysql.insert(tableName,col(firstPage[i]))
-    } 
+    try {
+      const file = this.ctx.request.files[0]; 
+      const xlsx = require('node-xlsx');  
+      let excel = xlsx.parse(file.filepath);
+      let firstPage = excel[0].data    
+      for(let i = 1;  i <  firstPage.length ;i++){ 
+        await this.app.mysql.insert(tableName,col(firstPage[i]))
+      } 
+    } catch (error) {
+      console.log('uploadExcel()',error)
+    }
     this.ctx.body = { message:'ok'};
   }
   async deleteExcel(){
-    const id = this.ctx.body; 
-    console.log(id)
-    let result= await this.app.mysql.delete(tableName,{ id: 3 });
-    this.ctx.body = { message:'ok',result:result};
+    try {
+      const id = this.ctx.query.id; 
+      let result= await this.app.mysql.delete(tableName,{ id: id });
+    } catch (error) {
+      console.log('uploadExcel()',error)
+    } 
+    this.ctx.body = { message:'ok'};
   }
    
 }
