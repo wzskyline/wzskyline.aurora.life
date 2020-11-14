@@ -56,6 +56,12 @@ class controllerExcel extends Controller {
     } 
     this.ctx.body = { message:'ok'};
   }
+  async deleteExcel(){
+    const id = this.ctx.body; 
+    console.log(id)
+    let result= await this.app.mysql.delete(tableName,{ id: 3 });
+    this.ctx.body = { message:'ok',result:result};
+  }
    
 }
 

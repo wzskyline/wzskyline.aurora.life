@@ -12,4 +12,5 @@ module.exports = app => {
   router.get('/excel', controller.controllerExcel.excelPage);
   router.get('/getExcelJosn', controller.controllerExcel.getExcelJosn);
   router.post('/uploadExcel', controller.controllerExcel.uploadExcel); 
+  router.get('/deleteExcel', controller.controllerExcel.deleteExcel); 
 };
