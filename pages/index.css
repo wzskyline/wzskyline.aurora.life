@@ -1,4 +1,13 @@
-
-.title {
-  background: rgb(121, 242, 129);
+.ant-pro-table-search-query-filter{
+  display: none!important;
+}
+.ant-pro-table{height: 90vh;}
+.top{
+  position: absolute;
+  width: 100vw;
+  height: 10vh;
+  z-index: 999;
+}
+.ant-pro-table-list-toolbar-container{
+  padding: 3px 0!important;
 }
