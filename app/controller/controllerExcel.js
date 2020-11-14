@@ -47,11 +47,12 @@ function col(arr,table){
     case 'tc': return { date: new Date ((arr[0]- 25567 - 2) * 86400 * 1000) || '', name:arr[1] || '', guige:arr[2] || '',
     type:arr[3] || '', need:arr[4] || '', finish:arr[5] || '',
     unit:arr[6] || '', usefor:arr[7] || '', 
-     desc:arr[8] || '', }
+    desc:arr[8] || '', }
     case 'td': return { date: new Date ((arr[0]- 25567 - 2) * 86400 * 1000) || '', name:arr[1] || '', 
     guige:arr[2] || '', need:arr[3] || '', finish:arr[4] || '', unit:arr[5] || '', 
     position:arr[6] || '', usefor:arr[7] || '', }
-    case 'te': return { date: new Date ((arr[0]- 25567 - 2) * 86400 * 1000) || '', name:arr[1] || '', gongyi:arr[2] || '', number:arr[3] || '', time:arr[4] || '', position:arr[5] || '', desc:arr[6] || '', }
+    case 'te': return { date: new Date ((arr[0]- 25567 - 2) * 86400 * 1000) || '', name:arr[1] || '',
+    gongyi:arr[2] || '', number:arr[3] || '', time:arr[4] || '', position:arr[5] || '', desc:arr[6] || '', }
   } 
 }
 class controllerExcel extends Controller {
