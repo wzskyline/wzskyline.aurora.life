@@ -1,7 +1,21 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-const table
+const tableName = 't_excel_a';
+/*
+t_excel_a
+CREATE TABLE IF NOT EXISTS `t_excel_a`(
+   `id` INT UNSIGNED AUTO_INCREMENT,
+   `name` VARCHAR(100),
+   `mark` VARCHAR(500),
+   `unit` VARCHAR(300),
+   `store` VARCHAR(300),
+   `position` VARCHAR(500),
+   `type` VARCHAR(500),
+   `desc` VARCHAR(500),
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+*/
 function col(arr){
  return {
   number:arr[0] || '',
@@ -19,7 +33,7 @@ class controllerExcel extends Controller {
     await this.ctx.render('excel');
   }
   async getExcelJosn() {
-    const data = await this.app.mysql.select('register') 
+    const data = await this.app.mysql.select( tableName ) 
     this.ctx.body = data;
   }
   async uploadExcelTest() { 
@@ -28,7 +42,7 @@ class controllerExcel extends Controller {
     let excel = xlsx.parse(file.filepath);
     let firstPage = excel[0].data    
     for(let i = 0;  i <  firstPage.length ;i++){ 
-      let s= await this.app.mysql.insert('register',{ username:firstPage[i][1], password:firstPage[i][2]})
+      let s= await this.app.mysql.insert(tableName,{ username:firstPage[i][1], password:firstPage[i][2]})
     } 
     this.ctx.body = { message:'ok'};
   }
@@ -38,8 +52,7 @@ class controllerExcel extends Controller {
     let excel = xlsx.parse(file.filepath);
     let firstPage = excel[0].data    
     for(let i = 0;  i <  firstPage.length ;i++){ 
-      let line = col(firstPage[i])
-      let s= await this.app.mysql.insert('register',line)
+      await this.app.mysql.insert(tableName,col(firstPage[i]))
     } 
     this.ctx.body = { message:'ok'};
   }
