@@ -2,6 +2,7 @@
 
 const Controller = require('egg').Controller;
 const tableName = 't_excel_a';
+
 /*
 t_excel_a
 CREATE TABLE IF NOT EXISTS `t_excel_a`(
@@ -112,10 +113,33 @@ class controllerExcel extends Controller {
   
   async updateExcel(){
     try {
-      const { table,obj }= this.ctx.request.body; 
+      const Literal = this.app.mysql.literals.Literal
+      const{ table,obj} = this.ctx.request.body;  
+      console.log(obj,obj.date)
+      if(obj.date){
+        //insert into te (date) values ( str_to_date('08/09/2008', '%m/%d/%Y'))
+        obj.date = new Literal(`str_to_date('${obj.date }','%Y-%m-%d')`) //this.app.mysql.literals.now;
+      }
+      console.log(obj.date)
       let result = await this.app.mysql.update(table,obj);
     } catch (error) {
       console.log('updateExcel()',error)
+    } 
+    this.ctx.body = { message:'ok'};
+  }
+  async addOneExcel(){
+    try {
+      const Literal = this.app.mysql.literals.Literal
+      const{ table,obj} = this.ctx.request.body;  
+      console.log(1112,)
+      if(obj.date){
+        //insert into te (date) values ( str_to_date('08/09/2008', '%m/%d/%Y'))
+        obj.date = new Literal(`str_to_date('${obj.date }','%Y-%m-%d')`) //this.app.mysql.literals.now;
+      }
+      console.log(obj.date)
+      let result = await this.app.mysql.insert(table,obj);
+    } catch (error) {
+      console.log('addOneExcel()',error)
     } 
     this.ctx.body = { message:'ok'};
   }
@@ -133,3 +157,4 @@ class controllerExcel extends Controller {
 }
 
 module.exports = controllerExcel;
+//https://ruphi.cn/archives/298/

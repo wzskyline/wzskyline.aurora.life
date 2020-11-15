@@ -17,6 +17,7 @@ module.exports = appInfo => {
       password: '123456',
       // 数据库名
       database: 'test',
+      timezone:  '+08:00',
     },
   };
   
@@ -26,6 +27,12 @@ module.exports = appInfo => {
     mapping: {
       '.html': 'ejs',
     },
+  };
+  config.security = {
+    csrf: {
+        enable: false,
+        ignoreJSON: true, // 默认为 false，当设置为 true 时，将会放过所有 content-type 为 `application/json` 的请求
+    }, 
   };
   config.multipart = {
     fileSize:'100mb',

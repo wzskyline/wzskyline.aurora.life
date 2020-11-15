@@ -13,6 +13,7 @@ module.exports = app => {
   router.post('/uploadExcel', controller.controllerExcel.uploadExcel); 
 
   router.get('/getExcelJosn', controller.controllerExcel.getExcelJosn);
-  router.get('/updateExcel', controller.controllerExcel.updateExcel);
+  router.post('/addOneExcel', controller.controllerExcel.addOneExcel);
+  router.post('/updateExcel', controller.controllerExcel.updateExcel);
   router.get('/deleteExcel', controller.controllerExcel.deleteExcel); 
 };
