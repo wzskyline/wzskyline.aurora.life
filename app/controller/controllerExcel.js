@@ -70,13 +70,14 @@ class controllerExcel extends Controller {
       case 'ta': where += `number like '%${search}%' or name like '%${search}%' `; break;
       case 'tb': where += `  name like '%${search}%' `; break;
       case 'tc': where += `  name like '%${search}%' `; break;
-      case 'td': where += `  name like '%${search}%' `; break;
+      case 'td': where += `  position like '%${search}%' `; break;
       case 'te': where += `  name like '%${search}%' `; break;
     }
     count = await this.app.mysql.query(`select count(id) as count from ${table} ${where}  `)
     data = await this.app.mysql.query(`select * from  ${table}  ${where}  limit ${(page-1)* pageSize},${1*pageSize}`);
     this.ctx.body = { count:count[0].count, data,page,pageSize};
     } catch (error) {
+      this.ctx.body = { message:error};
       console.log('getExcelJosn()',error)
     }
   }
@@ -104,11 +105,12 @@ class controllerExcel extends Controller {
         console.log( firstPage[i])
         if(!firstPage[i][0]) break;
         await this.app.mysql.insert(table,col(firstPage[i],table))
+        this.ctx.body = { message:'ok'};
       } 
     } catch (error) {
+      this.ctx.body = { message:error};
       console.log('uploadExcel()',error)
-    }
-    this.ctx.body = { message:'ok'};
+    } 
   }
   
   async updateExcel(){
@@ -122,10 +124,11 @@ class controllerExcel extends Controller {
       }
       console.log(obj.date)
       let result = await this.app.mysql.update(table,obj);
+      this.ctx.body = { message:'ok'};
     } catch (error) {
+      this.ctx.body = { message:error};
       console.log('updateExcel()',error)
-    } 
-    this.ctx.body = { message:'ok'};
+    }  
   }
   async addOneExcel(){
     try {
@@ -138,20 +141,23 @@ class controllerExcel extends Controller {
       }
       console.log(obj.date)
       let result = await this.app.mysql.insert(table,obj);
+      this.ctx.body = { message:'ok'};
     } catch (error) {
+      this.ctx.body = { message:error};
       console.log('addOneExcel()',error)
-    } 
-    this.ctx.body = { message:'ok'};
+    }  
   }
 
   async deleteExcel(){
     try {
       const { table,id }= this.ctx.query; 
       let result= await this.app.mysql.delete(table,{ id });
+      this.ctx.body = { message:'ok'};
     } catch (error) {
-      console.log('uploadExcel()',error)
+      this.ctx.body = { message:error};
+      console.log('deleteExcel()',error)
     } 
-    this.ctx.body = { message:'ok'};
+    
   }
    
 }
