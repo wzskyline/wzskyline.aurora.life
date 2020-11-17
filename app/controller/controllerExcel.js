@@ -68,10 +68,10 @@ class controllerExcel extends Controller {
 
     switch(table){
       case 'ta': where += `number like '%${search}%' or name like '%${search}%' `; break;
-      case 'tb': where += `  name like '%${search}%' `; break;
-      case 'tc': where += `  name like '%${search}%' `; break;
-      case 'td': where += `  position like '%${search}%' `; break;
-      case 'te': where += `  name like '%${search}%' `; break;
+      case 'tb': where += `  name like '%${search}%' order by date desc `; break;
+      case 'tc': where += `  name like '%${search}%'  order by date desc  `; break;
+      case 'td': where += `  position like '%${search}%'  order by date desc  `; break;
+      case 'te': where += `  name like '%${search}%'  order by date desc  `; break;
     }
     count = await this.app.mysql.query(`select count(id) as count from ${table} ${where}  `)
     data = await this.app.mysql.query(`select * from  ${table}  ${where}  limit ${(page-1)* pageSize},${1*pageSize}`);
@@ -93,16 +93,12 @@ class controllerExcel extends Controller {
   }
   async uploadExcel() { 
     try {
-      const file = this.ctx.request.files[0]; 
-      console.log( this.ctx.request.body)
-      const table = this.ctx.request.body.table; 
-      console.log( table)
+      const file = this.ctx.request.files[0];  
+      const table = this.ctx.request.body.table;  
       const xlsx = require('node-xlsx');  
       let excel = xlsx.parse(file.filepath);
-      let firstPage = excel[0].data    
-      console.log( firstPage.length)
-      for(let i = 1;  i <  firstPage.length ;i++){ 
-        console.log( firstPage[i])
+      let firstPage = excel[0].data     
+      for(let i = 1;  i <  firstPage.length ;i++){  
         if(!firstPage[i][0]) break;
         await this.app.mysql.insert(table,col(firstPage[i],table))
         this.ctx.body = { message:'ok'};
@@ -117,12 +113,10 @@ class controllerExcel extends Controller {
     try {
       const Literal = this.app.mysql.literals.Literal
       const{ table,obj} = this.ctx.request.body;  
-      console.log(obj,obj.date)
       if(obj.date){
         //insert into te (date) values ( str_to_date('08/09/2008', '%m/%d/%Y'))
         obj.date = new Literal(`str_to_date('${obj.date }','%Y-%m-%d')`) //this.app.mysql.literals.now;
-      }
-      console.log(obj.date)
+      } 
       let result = await this.app.mysql.update(table,obj);
       this.ctx.body = { message:'ok'};
     } catch (error) {
@@ -133,13 +127,11 @@ class controllerExcel extends Controller {
   async addOneExcel(){
     try {
       const Literal = this.app.mysql.literals.Literal
-      const{ table,obj} = this.ctx.request.body;  
-      console.log(1112,)
+      const{ table,obj} = this.ctx.request.body; 
       if(obj.date){
         //insert into te (date) values ( str_to_date('08/09/2008', '%m/%d/%Y'))
         obj.date = new Literal(`str_to_date('${obj.date }','%Y-%m-%d')`) //this.app.mysql.literals.now;
-      }
-      console.log(obj.date)
+      } 
       let result = await this.app.mysql.insert(table,obj);
       this.ctx.body = { message:'ok'};
     } catch (error) {
