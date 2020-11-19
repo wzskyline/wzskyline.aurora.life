@@ -42,18 +42,19 @@ CREATE TABLE IF NOT EXISTS `tb`( `id` INT UNSIGNED AUTO_INCREMENT,
 */
 function col(arr,table){
   switch(table){
-    case 'ta': return { number:arr[0] || '', name:arr[1] || '', mark:arr[2] || '', unit:arr[3] || '', store:arr[4] || '', position:arr[5] || '', type:arr[6] || '', desc:arr[7] || '', }
+    case 'ta': return { number:arr[0] || '', name:arr[1] || '', mark:arr[2] || '',
+     unit:arr[3] || '', store:arr[4] || '', position:arr[5] || '', type:arr[6] || '', desc:arr[7] || '',fp:'' }
     case 'tb': return { date: new Date ((arr[0]- 25567 - 2) * 86400 * 1000) , name:arr[1] || '', guige:arr[2] || '',
-    number:arr[3] || '', unit:arr[4] || '', person:arr[5] || '', desc:arr[6] || '', }
+    number:arr[3] || '', unit:arr[4] || '', person:arr[5] || '', desc:arr[6] || '',fp:''}
     case 'tc': return { date: new Date ((arr[0]- 25567 - 2) * 86400 * 1000) || '', name:arr[1] || '', guige:arr[2] || '',
     type:arr[3] || '', need:arr[4] || '', finish:arr[5] || '',
     unit:arr[6] || '', usefor:arr[7] || '', 
-    desc:arr[8] || '', }
+    desc:arr[8] || '', fp:''}
     case 'td': return { date: new Date ((arr[0]- 25567 - 2) * 86400 * 1000) || '', name:arr[1] || '', 
     guige:arr[2] || '', need:arr[3] || '', finish:arr[4] || '', unit:arr[5] || '', 
-    position:arr[6] || '', usefor:arr[7] || '', }
+    position:arr[6] || '', usefor:arr[7] || '',fp:''}
     case 'te': return { date: new Date ((arr[0]- 25567 - 2) * 86400 * 1000) || '', name:arr[1] || '',
-    gongyi:arr[2] || '', number:arr[3] || '', time:arr[4] || '', position:arr[5] || '', desc:arr[6] || '', }
+    gongyi:arr[2] || '', number:arr[3] || '', time:arr[4] || '', position:arr[5] || '', desc:arr[6] || '',fp:'' }
   } 
 }
 class controllerExcel extends Controller {
