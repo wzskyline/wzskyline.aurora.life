@@ -32,19 +32,19 @@ self.__precacheManifest = [
     "url": "index.html"
   },
   {
-    "revision": "536a155b48ac4a1a7fed9b1967480504",
-    "url": "1.72x72.png"
-  },
-  {
     "revision": "40702aa4c56ef5839c5e3fbed546f99f",
     "url": "1.jpg"
   },
   {
-    "revision": "7c87af7b5f104f89c3e579ef696b2852",
-    "url": "2.96x96.png"
+    "revision": "536a155b48ac4a1a7fed9b1967480504",
+    "url": "1.72x72.png"
   },
   {
     "revision": "add03a3576f84cd07605d8789255ac11",
     "url": "2.jpg"
+  },
+  {
+    "revision": "7c87af7b5f104f89c3e579ef696b2852",
+    "url": "2.96x96.png"
   }
 ];
