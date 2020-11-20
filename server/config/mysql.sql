@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS `td`( `id` INT UNSIGNED AUTO_INCREMENT, 
+   `date` DATE,  `finish` VARCHAR(100), `guige` VARCHAR(100),
+   `need` VARCHAR(100), `position` VARCHAR(100), `unit` VARCHAR(100), 
+   `desc` VARCHAR(100),  `fp` VARCHAR(100),PRIMARY KEY ( `id` ))ENGINE=InnoDB DEFAULT CHARSET=utf8;

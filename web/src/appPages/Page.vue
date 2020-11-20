@@ -78,16 +78,17 @@
         <td :style="{display:scope.row.hasOwnProperty('gongyi')?'':'none'}">{{scope.row.gongyi}}</td>
         <td :style="{display:scope.row.hasOwnProperty('guige')?'':'none'}">{{scope.row.guige}}</td>
         <td :style="{display:scope.row.hasOwnProperty('number')?'':'none'}">{{scope.row.number}}</td>
-        <td :style="{display:scope.row.hasOwnProperty('need')?'':'none'}">{{scope.row.type}}</td> 
-        <td :style="{display:scope.row.hasOwnProperty('need')?'':'none'}">{{scope.row.need}}</td>
+        <td :style="{display:scope.row.hasOwnProperty('type')?'':'none'}">{{scope.row.type}}</td> 
+        <td :style="{display:scope.row.hasOwnProperty('need')?'':'none'}">{{scope.row.need}}</td> 
         <td :style="{display:scope.row.hasOwnProperty('finish')?'':'none'}">{{scope.row.finish}}</td>
         <td :style="{display:scope.row.hasOwnProperty('mark')?'':'none'}">{{scope.row.mark}}</td>
         <td :style="{display:scope.row.hasOwnProperty('unit')?'':'none'}">{{scope.row.unit}}</td>
         <td :style="{display:scope.row.hasOwnProperty('store')?'':'none'}">{{scope.row.store}}</td> 
         <td :style="{display:scope.row.hasOwnProperty('time')?'':'none'}">{{scope.row.time}}</td> 
+        <td :style="{display:scope.row.hasOwnProperty('position')?'':'none'}">{{scope.row.position}}</td> 
         <td :style="{display:scope.row.hasOwnProperty('usefor')?'':'none'}">{{scope.row.usefor}}</td> 
         <td :style="{display:scope.row.hasOwnProperty('person')?'':'none'}">{{scope.row.person}}</td> 
-        <td :style="{display:scope.row.hasOwnProperty('position')?'':'none'}">{{scope.row.position}}</td> 
+        
         
        
         <td >{{scope.row.desc}}</td>
@@ -119,7 +120,7 @@ export default {
              position: 'left',
              row:{}, 
              sort: { name: '', order: 'asc' },
-            columns: [   ],
+             columns: [   ],
             list: [  ],
             current:1,
             total:100,
@@ -148,7 +149,7 @@ export default {
     change(page){
      console.log(page)
      this.list =[]
-     this.getList({table ,search:this.search,page,pageSize:pageSize})
+     this.getList({table:this.table ,search:this.search,page,pageSize:pageSize})
     },
     deleteLine(row){
      this.openSimple = true;
@@ -194,14 +195,26 @@ export default {
        var tmp = new Date(this.row.date) 
        this.row.date = `${tmp.getFullYear()}-${tmp.getMonth()+1}-${tmp.getDate()+1}`
        //
-       try {
+       var submitMap = {
+         ta:{ desc: this.row.desc, mark: this.row.mark, name: this.row.name, number: this.row.number, position: this.row.position, store: this.row.store, type: this.row.type, unit: this.row.unit, },
+         tb:{ date: this.row.date, desc: this.row.desc, name: this.row.name,  guige: this.row.guige, number: this.row.number, person: this.row.person, unit: this.row.unit, },
+         tc:{ date: this.row.date, desc: this.row.desc, name: this.row.name,finish: this.row.finish, guige: this.row.guige,need: this.row.need, type: this.row.type, unit: this.row.unit,usefor: this.row.usefor, },
+         td:{ date: this.row.date, desc: this.row.desc, name: this.row.name,finish: this.row.finish, guige: this.row.guige,need: this.row.need, position: this.row.position, unit: this.row.unit,usefor: this.row.usefor, },
+         te:{ date: this.row.date, desc: this.row.desc,  name: this.row.name, number: this.row.number, position: this.row.position, gongyi: this.row.gongyi, time: this.row.time, },
+       }
+       var submit = submitMap[this.table]
+       submit.id = this.row.id;
+       
+        try {
            if(this.row.id){
-             updateExcel(this.table,this.row).then(res=>{
+             submit.fp = this.row.fp;
+             updateExcel(this.table,submit).then(res=>{
                _this.flush();
                res?this.$toast.success('更新成功'):this.$toast.error('更新失败');
              })
            }else{
-            addOneExcel(this.table,this.row).then(res=>{
+             submit.fp = 'wz';
+            addOneExcel(this.table,submit).then(res=>{
               _this.flush();
               res?this.$toast.success('添加成功'):this.$toast.error('添加失败');
             })

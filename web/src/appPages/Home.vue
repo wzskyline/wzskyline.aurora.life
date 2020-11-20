@@ -94,13 +94,14 @@ var map={
   Page4:{
     table:'td', title:'施工进度', info:'输入名称可查询',
     col:[
-          { title: '日期',  name: 'date' },
+          { title: '日期',  name: 'date' }, 
           { title: '规格', name: 'guige',  },
           { title: '需求量', name: 'need',  },
           { title: '完成量', name: 'finish',  },
           { title: '单位', name: 'unit',  }, 
           { title: '地点', name: 'position',  },
           { title: '备注', name: 'desc',  },
+          
           { title: '操作',  name: 'id' }
     ]
   },
