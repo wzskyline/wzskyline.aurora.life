@@ -26,7 +26,7 @@
           <p  :style="{display:table=='tb'?'':'none'}">   
           <mu-form-item label="名称"  > <mu-text-field v-model="row.name" /> </mu-form-item>
           <mu-form-item label="规格"  > <mu-text-field v-model="row.guige"/></mu-form-item>
-          <mu-form-item label="数量"  > <mu-text-field v-model="row.number" /> </mu-form-item>
+          <mu-form-item label="数量"  > <mu-text-field v-model="row.number" type="number" /> </mu-form-item>
           <mu-form-item label="单位"  > <mu-text-field v-model="row.unit" /> </mu-form-item>
           <mu-form-item label="领用人"  > <mu-text-field v-model="row.person"/> </mu-form-item> 
           </p>
@@ -34,23 +34,23 @@
           <mu-form-item label="名称"  > <mu-text-field v-model="row.name" /> </mu-form-item>
           <mu-form-item label="规格"  > <mu-text-field v-model="row.guige" /> </mu-form-item>
           <mu-form-item label="型号"  > <mu-text-field v-model="row.type" /> </mu-form-item>
-          <mu-form-item label="需求量"  > <mu-text-field v-model="row.need" /> </mu-form-item>
-          <mu-form-item label="已备量"  > <mu-text-field v-model="row.fiinish" /> </mu-form-item>
+          <mu-form-item label="需求量"  > <mu-text-field v-model="row.need" type="number"/> </mu-form-item>
+          <mu-form-item label="已备量"  > <mu-text-field v-model="row.fiinish"  type="number"/> </mu-form-item>
           <mu-form-item label="单位"  > <mu-text-field v-model="row.unit" /> </mu-form-item>
           <mu-form-item label="用途"  > <mu-text-field v-model="row.usefor" /> </mu-form-item>
           </p>
           <p  :style="{display:table=='td'?'':'none'}">   
           <mu-form-item label="规格"  > <mu-text-field v-model="row.guige" /> </mu-form-item>
-          <mu-form-item label="需求量"  > <mu-text-field v-model="row.need"/> </mu-form-item>
-          <mu-form-item label="完成量"  > <mu-text-field v-model="row.finish" /> </mu-form-item>
+          <mu-form-item label="需求量"  > <mu-text-field v-model="row.need" type="number"/> </mu-form-item>
+          <mu-form-item label="完成量"  > <mu-text-field v-model="row.finish" type="number" /> </mu-form-item>
           <mu-form-item label="单位"  > <mu-text-field v-model="row.unit" /> </mu-form-item> 
           <mu-form-item label="地点"  > <mu-text-field v-model="row.position" /></mu-form-item> 
           </p>
           <p  :style="{display:table=='te'?'':'none'}">   
           <mu-form-item label="姓名"  > <mu-text-field v-model="row.name" /> </mu-form-item>
           <mu-form-item label="工艺"  > <mu-text-field v-model="row.gongyi" /></mu-form-item>
-          <mu-form-item label="数量"  > <mu-text-field v-model="row.number" /></mu-form-item>
-          <mu-form-item label="工时"  > <mu-text-field v-model="row.time" /></mu-form-item>
+          <mu-form-item label="数量"  > <mu-text-field v-model="row.number" type="number" /></mu-form-item>
+          <mu-form-item label="工时"  > <mu-text-field v-model="row.time" type="number" /></mu-form-item>
           </p>
           <mu-text-field v-model="row.desc" multi-line :rows="4" icon="comment"  placeholder="备注"/><br/>
           <mu-form-item> <mu-button @click="clear">重置</mu-button> <mu-button color="primary" @click="submit">提交</mu-button> </mu-form-item>
