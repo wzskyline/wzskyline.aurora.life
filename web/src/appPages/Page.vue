@@ -74,22 +74,37 @@
       
       <template slot-scope="scope">
         <td :style="{display:scope.row.hasOwnProperty('date')?'':'none'}">{{scope.row.date?scope.row.date.substr(0,10):''}}</td>
-        <td :style="{display:scope.row.hasOwnProperty('name')?'':'none'}">{{scope.row.name}}</td>
-        <td :style="{display:scope.row.hasOwnProperty('gongyi')?'':'none'}">{{scope.row.gongyi}}</td>
-        <td :style="{display:scope.row.hasOwnProperty('guige')?'':'none'}">{{scope.row.guige}}</td>
-        <td :style="{display:scope.row.hasOwnProperty('number')?'':'none'}">{{scope.row.number}}</td>
-        <td :style="{display:scope.row.hasOwnProperty('type')?'':'none'}">{{scope.row.type}}</td> 
-        <td :style="{display:scope.row.hasOwnProperty('need')?'':'none'}">{{scope.row.need}}</td> 
-        <td :style="{display:scope.row.hasOwnProperty('finish')?'':'none'}">{{scope.row.finish}}</td>
-        <td :style="{display:scope.row.hasOwnProperty('mark')?'':'none'}">{{scope.row.mark}}</td>
-        <td :style="{display:scope.row.hasOwnProperty('unit')?'':'none'}">{{scope.row.unit}}</td>
-        <td :style="{display:scope.row.hasOwnProperty('store')?'':'none'}">{{scope.row.store}}</td> 
-        <td :style="{display:scope.row.hasOwnProperty('time')?'':'none'}">{{scope.row.time}}</td> 
-        <td :style="{display:scope.row.hasOwnProperty('position')?'':'none'}">{{scope.row.position}}</td> 
-        <td :style="{display:scope.row.hasOwnProperty('usefor')?'':'none'}">{{scope.row.usefor}}</td> 
-        <td :style="{display:scope.row.hasOwnProperty('person')?'':'none'}">{{scope.row.person}}</td> 
+        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.number}}</td>
+        <td :style="{display:['ta','tb','tc','te',].includes(table) ?'':'none'}">{{scope.row.name}}</td>
+        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.mark}}</td>
+        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.unit}}</td>
+        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.store}}</td>
+        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.position}}</td>
+        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.type}}</td> 
+
+        <td :style="{display:table =='tb'?'':'none'}">{{scope.row.guige}}</td>
+        <td :style="{display:table =='tb'?'':'none'}">{{scope.row.number}}</td>
+        <td :style="{display:table =='tb'?'':'none'}">{{scope.row.unit}}</td>
+        <td :style="{display:table =='tb'?'':'none'}">{{scope.row.person}}</td> 
         
+        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.guige}}</td>
+        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.type}}</td>
+        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.need}}</td>
+        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.finish}}</td>
+        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.unit}}</td>
+        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.usefor}}</td> 
         
+        <td :style="{display:table =='td'?'':'none'}">{{scope.row.guige}}</td>
+        <td :style="{display:table =='td'?'':'none'}">{{scope.row.need}}</td>
+        <td :style="{display:table =='td'?'':'none'}">{{scope.row.finish}}</td>
+        <td :style="{display:table =='td'?'':'none'}">{{scope.row.unit}}</td> 
+        <td :style="{display:table =='td'?'':'none'}">{{scope.row.position}}</td> 
+        
+        <td :style="{display:table =='te'?'':'none'}"> {{scope.row.gongyi}}</td>
+        <td :style="{display:table =='te'?'':'none'}"> {{scope.row.number}}</td>
+        <td :style="{display:table =='te'?'':'none'}"> {{scope.row.time}}</td>
+        <td :style="{display:table =='te'?'':'none'}"> {{scope.row.position}}</td> 
+          
        
         <td >{{scope.row.desc}}</td>
         <td >
@@ -112,7 +127,7 @@ export default {
   data(){
         return{
              title:'',
-             table:'',
+             table:'ta',
              info:'',
              docked: false,
              open: false,

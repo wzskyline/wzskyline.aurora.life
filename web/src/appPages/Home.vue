@@ -43,7 +43,7 @@
 </mu-container>
   </mu-expansion-panel>
 </mu-container>
-   
+   <audio  src="13380.mp3" :play="audioPlay" style="display: none;"></audio >
   </div>
 </template>
 
@@ -124,6 +124,7 @@ export default {
   name: 'Home',
   data(){
         return{
+          audioPlay:false,
              panel: '',
             imgArr:[
              
@@ -141,10 +142,14 @@ export default {
             console.log(this.active);
         },
         changePage(name){
+             this.audioPlay = true;
+             let audio = new Audio()
+              audio.src = "13380.mp3"
+              audio.play();
              this.update(map[name])
              setTimeout(()=>{
                this.push('Page');
-             },200)
+             },500)
         },
          toggle (panel) {
             this.panel = panel === this.panel ? '' : panel;
