@@ -41,6 +41,7 @@
           </p>
           <p  :style="{display:table=='td'?'':'none'}">   
           <mu-form-item label="规格"  > <mu-text-field v-model="row.guige" /> </mu-form-item>
+          <mu-form-item label="名称"  > <mu-text-field v-model="row.name" /> </mu-form-item>
           <mu-form-item label="需求量"  > <mu-text-field v-model="row.need" type="number"/> </mu-form-item>
           <mu-form-item label="完成量"  > <mu-text-field v-model="row.finish" type="number" /> </mu-form-item>
           <mu-form-item label="单位"  > <mu-text-field v-model="row.unit" /> </mu-form-item> 
@@ -96,6 +97,7 @@
         <td :style="{display:table =='tc'?'':'none'}">{{scope.row.usefor}}</td> 
         
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.guige}}</td>
+        <td :style="{display:table =='td'?'':'none'}">{{scope.row.name}}</td>
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.need}}</td>
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.finish}}</td>
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.unit}}</td> 
