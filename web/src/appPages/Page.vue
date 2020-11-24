@@ -96,8 +96,8 @@
         <td :style="{display:table =='tc'?'':'none'}">{{scope.row.unit}}</td>
         <td :style="{display:table =='tc'?'':'none'}">{{scope.row.usefor}}</td> 
         
-        <td :style="{display:table =='td'?'':'none'}">{{scope.row.guige}}</td>
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.name}}</td>
+        <td :style="{display:table =='td'?'':'none'}">{{scope.row.guige}}</td>
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.need}}</td>
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.finish}}</td>
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.unit}}</td> 
