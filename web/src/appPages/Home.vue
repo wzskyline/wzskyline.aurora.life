@@ -55,8 +55,8 @@ var map={
           { title: '商品编号',  name: 'number' },
           { title: '商品名称', name: 'name',  },
           { title: '型号', name: 'mark',  },
-          { title: '库存单位', name: 'unit',  },
-          { title: '仓位', name: 'store',  }, 
+          { title: '数量', name: 'unit',  },
+          { title: '单位', name: 'store',  }, 
           { title: '存放位置', name: 'position',  },
           { title: '类别', name: 'type',  },
           { title: '备注', name: 'desc',  },
@@ -143,9 +143,7 @@ export default {
         },
         changePage(name){
              this.audioPlay = true;
-             let audio = new Audio()
-              audio.src = "13380.mp3"
-              audio.play();
+             let audio = new Audio();audio.src = "13380.mp3";audio.play();
              this.update(map[name])
              setTimeout(()=>{
                this.push('Page');

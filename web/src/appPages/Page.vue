@@ -51,6 +51,7 @@
           <mu-form-item label="工艺"  > <mu-text-field v-model="row.gongyi" /></mu-form-item>
           <mu-form-item label="数量"  > <mu-text-field v-model="row.number" type="number" /></mu-form-item>
           <mu-form-item label="工时"  > <mu-text-field v-model="row.time" type="number" /></mu-form-item>
+          <mu-form-item label="地点"  > <mu-text-field v-model="row.position" /></mu-form-item> 
           </p>
           <mu-text-field v-model="row.desc" multi-line :rows="4" icon="comment"  placeholder="备注"/><br/>
           <mu-form-item> <mu-button @click="clear">重置</mu-button> <mu-button color="primary" @click="submit">提交</mu-button> </mu-form-item>
@@ -151,6 +152,7 @@ export default {
     },
     methods: {
     searchData(){
+      let audio = new Audio();audio.src = "13380.mp3";audio.play();
      this.list =[]
      this.getList({table:this.table ,search:this.search,page:1,pageSize:pageSize})
     },
