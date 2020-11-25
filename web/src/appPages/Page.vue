@@ -35,7 +35,7 @@
           <mu-form-item label="规格"  > <mu-text-field v-model="row.guige" /> </mu-form-item>
           <mu-form-item label="型号"  > <mu-text-field v-model="row.type" /> </mu-form-item>
           <mu-form-item label="需求量"  > <mu-text-field v-model="row.need" type="number"/> </mu-form-item>
-          <mu-form-item label="已备量"  > <mu-text-field v-model="row.fiinish"  type="number"/> </mu-form-item>
+          <mu-form-item label="已备量"  > <mu-text-field v-model="row.finish"  type="number"/> </mu-form-item>
           <mu-form-item label="单位"  > <mu-text-field v-model="row.unit" /> </mu-form-item>
           <mu-form-item label="用途"  > <mu-text-field v-model="row.usefor" /> </mu-form-item>
           </p>
@@ -72,46 +72,46 @@
   </mu-dialog>
 
 
-     <mu-data-table height="300" :columns="columns" :sort.sync="sort" @sort-change="handleSortChange" :data="list">
+     <mu-data-table height="300" border stripe  :min-col-width="70" :columns="columns" :sort.sync="sort" @sort-change="handleSortChange" :data="list">
       
       <template slot-scope="scope">
-        <td :style="{display:scope.row.hasOwnProperty('date')?'':'none'}">{{scope.row.date?scope.row.date.substr(0,10):''}}</td>
+        <td :style="{display:scope.row.hasOwnProperty('date')?'':'none',width:'90px'}">{{scope.row.date?scope.row.date.substr(0,10):''}}</td>
         <td :style="{display:table =='ta'?'':'none'}">{{scope.row.number}}</td>
         <td :style="{display:['ta','tb','tc','te',].includes(table) ?'':'none'}">{{scope.row.name}}</td>
         <td :style="{display:table =='ta'?'':'none'}">{{scope.row.mark}}</td>
-        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.unit}}</td>
+        <td :style="{display:table =='ta'?'':'none',width:'40px'}">{{scope.row.unit}}</td>
         <td :style="{display:table =='ta'?'':'none'}">{{scope.row.store}}</td>
         <td :style="{display:table =='ta'?'':'none'}">{{scope.row.position}}</td>
         <td :style="{display:table =='ta'?'':'none'}">{{scope.row.type}}</td> 
 
         <td :style="{display:table =='tb'?'':'none'}">{{scope.row.guige}}</td>
         <td :style="{display:table =='tb'?'':'none'}">{{scope.row.number}}</td>
-        <td :style="{display:table =='tb'?'':'none'}">{{scope.row.unit}}</td>
+        <td :style="{display:table =='tb'?'':'none',width:'40px'}">{{scope.row.unit}}</td>
         <td :style="{display:table =='tb'?'':'none'}">{{scope.row.person}}</td> 
         
         <td :style="{display:table =='tc'?'':'none'}">{{scope.row.guige}}</td>
         <td :style="{display:table =='tc'?'':'none'}">{{scope.row.type}}</td>
-        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.need}}</td>
-        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.finish}}</td>
-        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.unit}}</td>
+        <td :style="{display:table =='tc'?'':'none',width:'40px'}">{{scope.row.need}}</td>
+        <td :style="{display:table =='tc'?'':'none',width:'40px'}">{{scope.row.finish}}</td>
+        <td :style="{display:table =='tc'?'':'none',width:'40px'}">{{scope.row.unit}}</td>
         <td :style="{display:table =='tc'?'':'none'}">{{scope.row.usefor}}</td> 
         
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.name}}</td>
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.guige}}</td>
-        <td :style="{display:table =='td'?'':'none'}">{{scope.row.need}}</td>
-        <td :style="{display:table =='td'?'':'none'}">{{scope.row.finish}}</td>
-        <td :style="{display:table =='td'?'':'none'}">{{scope.row.unit}}</td> 
+        <td :style="{display:table =='td'?'':'none',width:'40px'}">{{scope.row.need}}</td>
+        <td :style="{display:table =='td'?'':'none',width:'40px'}">{{scope.row.finish}}</td>
+        <td :style="{display:table =='td'?'':'none',width:'40px'}">{{scope.row.unit}}</td> 
         <td :style="{display:table =='td'?'':'none'}">{{scope.row.position}}</td> 
         
         <td :style="{display:table =='te'?'':'none'}"> {{scope.row.gongyi}}</td>
-        <td :style="{display:table =='te'?'':'none'}"> {{scope.row.number}}</td>
-        <td :style="{display:table =='te'?'':'none'}"> {{scope.row.time}}</td>
+        <td :style="{display:table =='te'?'':'none',width:'40px'}"> {{scope.row.number}}</td>
+        <td :style="{display:table =='te'?'':'none',width:'40px'}"> {{scope.row.time}}</td>
         <td :style="{display:table =='te'?'':'none'}"> {{scope.row.position}}</td> 
           
        
         <td >{{scope.row.desc}}</td>
         <td >
-          <a @click="deleteLine(scope.row)" class="a-delete">删除</a>
+          <a @click="deleteLine(scope.row)" class="a-delete">删除</a><br>
           <a @click="updateLine(scope.row)">修改</a>
         </td>
       </template>
@@ -251,5 +251,12 @@ export default {
 </script>
  
 <style scoped>
-  
+  th,td{
+    width:100px;
+    font-size: 10px!important;
+  }
+  th{
+    text-align: center!important;
+  }
+
 </style>

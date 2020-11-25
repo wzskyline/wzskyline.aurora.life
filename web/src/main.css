@@ -34,6 +34,9 @@ body{
 }
 .mu-table th,td{
   height: 30px!important;
-  padding: 0 10px!important; 
+  padding: 0 1px!important; 
 }
  
+th,td{
+  text-align: center!important;
+}
