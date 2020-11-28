@@ -178,6 +178,8 @@ export default {
     updateLine(row){
      console.log(row)
      this.row = row;
+     var tmp = new Date(this.row.date) 
+     this.row.date = `${tmp.getFullYear()}-${tmp.getMonth()+1}-${tmp.getDate()-1}`
      this.open = true;
     },
     handleSortChange ({name, order}) {
