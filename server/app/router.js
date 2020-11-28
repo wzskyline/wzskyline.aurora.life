@@ -16,4 +16,6 @@ module.exports = app => {
   router.post('/addOneExcel', controller.controllerExcel.addOneExcel);
   router.post('/updateExcel', controller.controllerExcel.updateExcel);
   router.get('/deleteExcel', controller.controllerExcel.deleteExcel); 
+
+  router.get('/deleteTable', controller.controllerExcel.deleteTable); 
 };

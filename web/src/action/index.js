@@ -6,6 +6,7 @@ export const urls={
   deleteExcel:`${host}/deleteExcel`,
   updateExcel:`${host}/updateExcel`,
   addOneExcel:`${host}/addOneExcel`,
+  deleteTable:`${host}/deleteTable`,
 }
 
 const safeFetch = async (url,method,postData,headers)=>{
@@ -39,6 +40,9 @@ export const  addOneExcel = async (table,obj)=>{
   obj.id = Date.now()%1000000;
   const res = await safeFetch(`${urls.addOneExcel}`,'post',{table,obj}); return res;
 }
+export const  deleteTable = async (table)=>{
+  const res = await safeFetch(`${urls.deleteTable}?table=${table}&id=${table}`); return res;
+}
 export default {
-  getExcelJosn,deleteExcel,updateExcel,addOneExcel
+  getExcelJosn,deleteExcel,updateExcel,addOneExcel,deleteTable
 }

@@ -68,11 +68,11 @@ class controllerExcel extends Controller {
     const {table,search,page,pageSize,}= this.ctx.query;  
 
     switch(table){
-      case 'ta': where += `number like '%${search}%' or name like '%${search}%' `; break;
+      case 'ta': where += `number like '%${search}%' or name like '%${search}%' or position like '%${search}%' `; break;
       case 'tb': where += `  name like '%${search}%' order by date desc `; break;
       case 'tc': where += `  name like '%${search}%'  order by date desc  `; break;
-      case 'td': where += `  position like '%${search}%'  order by date desc  `; break;
-      case 'te': where += `  name like '%${search}%'  order by date desc  `; break;
+      case 'td': where += `  position like '%${search}%' or position like '%${search}%'  order by date desc  `; break;
+      case 'te': where += `  name like '%${search}%' or position like '%${search}%' order by date desc  `; break;
     }
     count = await this.app.mysql.query(`select count(id) as count from ${table} ${where}  `)
     data = await this.app.mysql.query(`select * from  ${table}  ${where}  limit ${(page-1)* pageSize},${1*pageSize}`);
@@ -149,6 +149,23 @@ class controllerExcel extends Controller {
     } catch (error) {
       this.ctx.body = { message:error};
       console.log('deleteExcel()',error)
+    } 
+    
+  }
+
+  async deleteTable(){
+    try {
+      const { table,id }= this.ctx.query; 
+      if(id == table){
+         await this.app.mysql.delete(table);
+         this.ctx.body = { message:'ok'};
+      }else{
+         this.ctx.body = { message:'fail'};
+      }
+      
+    } catch (error) {
+      this.ctx.body = { message:error};
+      console.log('deleteTable()',error)
     } 
     
   }

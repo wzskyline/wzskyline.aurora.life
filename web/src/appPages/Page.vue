@@ -189,11 +189,10 @@ export default {
     closeSimpleDialog () {
       this.openSimple = false;
     },
-    buttonDelete(){
-       var _this = this; 
+    buttonDelete(){ 
             deleteExcel(this.table,this.row.id).then(res=>{
-                _this.openSimple = false;
-               _this.flush();
+                this.openSimple = false;
+               this.flush();
                res?this.$toast.success('删除成功'):this.$toast.error('删除失败');
          })
     },      

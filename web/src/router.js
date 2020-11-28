@@ -8,5 +8,6 @@ export default new Router({
   routes: [
     { path: '/', name: '/', component:()=>import("@/appPages/Home") },
     { path: '/Page', name: 'Page', component:()=>import("@/appPages/Page") },
+    { path: '/Delete', name: 'Delete', component:()=>import("@/appPages/Delete") },
   ] 
 })

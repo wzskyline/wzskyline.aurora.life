@@ -39,6 +39,9 @@
      <mu-chip class="demo-chip" color="green">
       <a href="https://docs.qq.com/doc/DT0VtRGpmV2tEZVpy" target="_blank" >获取技术支持,请跳转腾讯文档</a>
     </mu-chip>
+    <mu-chip class="demo-chip" color="tomato" @click="toDelete">
+      <u  > 管理表格</u>
+    </mu-chip>
   </mu-expansion-panel>
 </mu-container>
   </mu-expansion-panel>
@@ -149,6 +152,10 @@ export default {
              setTimeout(()=>{
                this.push('Page');
              },500)
+        },
+        
+        toDelete () {
+           this.push('Delete');
         },
          toggle (panel) {
             this.panel = panel === this.panel ? '' : panel;
