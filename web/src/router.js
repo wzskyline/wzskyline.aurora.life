@@ -6,8 +6,12 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    { path: '/', name: '/', component:()=>import("@/appPages/Home") },
+    //{ path: '/', name: '/', component:()=>import("@/appPages/Home") },
     { path: '/Page', name: 'Page', component:()=>import("@/appPages/Page") },
     { path: '/Delete', name: 'Delete', component:()=>import("@/appPages/Delete") },
+
+
+    { path: '/', name: '/', component:()=>import("@/wzskyline/Home") },
+
   ] 
 })

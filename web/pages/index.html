@@ -1,0 +1,12 @@
+<script>
+
+window.addEventListener('message',function(event){
+        console.log(event.data,cc)
+        cc=cc+1;
+        if(cc<2){
+            parent.postMessage({type:'get',key:'user'} ,'*')
+            document.write("Hello World,nice  every day !"+JSON.stringify(event.data));
+        }
+    })
+    
+</script>

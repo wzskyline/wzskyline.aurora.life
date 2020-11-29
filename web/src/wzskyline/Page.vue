@@ -13,7 +13,7 @@
         <mu-form ref="form" :model="row" class="mu-demo-form">
 
           <p  :style="{display:table=='ta'?'none':''}">   
-             <mu-form-item label="日期"  > <mu-date-input  format v-model="row.date" /> </mu-form-item>
+             <mu-form-item label="日期"  > <mu-date-input v-model="row.date" /> </mu-form-item>
           </p>
           <p  :style="{display:table=='ta'?'':'none'}">   
           <mu-form-item label="商品编号" > <mu-text-field v-model="row.number" /> </mu-form-item>
@@ -160,11 +160,6 @@ export default {
     },
     getList(arg){ var _this = this;
        getExcelJosn(arg).then(res=>{
-          res.data.map(e=>{
-            var str = e.date.substr(0,10)
-            var tmp =  new Date( new Date(str).getTime() + 86400000)
-            e.date = `${tmp.getFullYear()}-${tmp.getMonth()+1}-${tmp.getDate()}`
-          })
           _this.list = res.data
           _this.total = res.count
           _this.current = parseInt(res.page)
@@ -183,8 +178,8 @@ export default {
     updateLine(row){
      console.log(row)
      this.row = row;
-     //var tmp = new Date(this.row.date) 
-     //this.row.date = `${tmp.getFullYear()}-${tmp.getMonth()+1}-${tmp.getDate()-1}`
+     var tmp = new Date(this.row.date) 
+     this.row.date = `${tmp.getFullYear()}-${tmp.getMonth()+1}-${tmp.getDate()-1}`
      this.open = true;
     },
     handleSortChange ({name, order}) {
@@ -205,7 +200,6 @@ export default {
     },      
     iconAdd(){
       this.open = true;
-      this.row ={};
       this.row.id = '';
       this.row.date = new Date();
     },
@@ -219,7 +213,8 @@ export default {
     submit () {
        var _this = this;
        var tmp = new Date(this.row.date) 
-       this.row.date = `${tmp.getFullYear()}-${tmp.getMonth()+1}-${tmp.getDate()}`
+       this.row.date = `${tmp.getFullYear()}-${tmp.getMonth()+1}-${tmp.getDate()+1}`
+       //
        var submitMap = {
          ta:{ desc: this.row.desc, mark: this.row.mark, name: this.row.name, number: this.row.number, position: this.row.position, store: this.row.store, type: this.row.type, unit: this.row.unit, },
          tb:{ date: this.row.date, desc: this.row.desc, name: this.row.name,  guige: this.row.guige, number: this.row.number, person: this.row.person, unit: this.row.unit, },
