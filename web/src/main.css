@@ -40,3 +40,6 @@ body{
 th,td{
   text-align: center!important;
 }
+.is-hover{
+  background-color: #2196f3!important;
+}

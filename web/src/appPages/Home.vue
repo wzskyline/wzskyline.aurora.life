@@ -85,11 +85,11 @@ var map={
           { title: '日期',  name: 'date' },
           { title: '名称', name: 'name',  },
           { title: '规格', name: 'guige',  },
-          { title: '型号', name: 'type',  },
+          { title: '楼层', name: 'type',  },
           { title: '需求量', name: 'need',  },
           { title: '已备量', name: 'finish',  },
           { title: '单位', name: 'unit',  }, 
-          { title: '用途', name: 'usefor',  },
+          { title: '类别', name: 'usefor',  },
           { title: '备注', name: 'desc',  },
           { title: '操作',  name: 'id' }
     ]
