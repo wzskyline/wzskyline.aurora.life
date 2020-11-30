@@ -33,11 +33,11 @@
           <p  :style="{display:table=='tc'?'':'none'}">   
           <mu-form-item label="名称"  > <mu-text-field v-model="row.name" /> </mu-form-item>
           <mu-form-item label="规格"  > <mu-text-field v-model="row.guige" /> </mu-form-item>
-          <mu-form-item label="型号"  > <mu-text-field v-model="row.type" /> </mu-form-item>
+          <mu-form-item label="楼层"  > <mu-text-field v-model="row.type" /> </mu-form-item>
           <mu-form-item label="需求量"  > <mu-text-field v-model="row.need" type="number"/> </mu-form-item>
           <mu-form-item label="已备量"  > <mu-text-field v-model="row.finish"  type="number"/> </mu-form-item>
           <mu-form-item label="单位"  > <mu-text-field v-model="row.unit" /> </mu-form-item>
-          <mu-form-item label="用途"  > <mu-text-field v-model="row.usefor" /> </mu-form-item>
+          <mu-form-item label="类别"  > <mu-text-field v-model="row.usefor" /> </mu-form-item>
           </p>
           <p  :style="{display:table=='td'?'':'none'}">   
           <mu-form-item label="规格"  > <mu-text-field v-model="row.guige" /> </mu-form-item>
@@ -160,11 +160,13 @@ export default {
     },
     getList(arg){ var _this = this;
        getExcelJosn(arg).then(res=>{
-          res.data.map(e=>{
+          if(this.table!='ta'){
+            res.data.map(e=>{
             var str = e.date.substr(0,10)
             var tmp =  new Date( new Date(str).getTime() + 86400000)
             e.date = `${tmp.getFullYear()}-${tmp.getMonth()+1}-${tmp.getDate()}`
           })
+          }
           _this.list = res.data
           _this.total = res.count
           _this.current = parseInt(res.page)

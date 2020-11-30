@@ -1,125 +1,15 @@
 <template>
   <div class="detail">
-      <mu-appbar style="width: 100%;" color="primary">
-      <mu-button icon slot="left" @click="iconBack">
-        <mu-icon value="arrow_back" ></mu-icon>
-      </mu-button> {{title}}
-      <mu-button flat slot="right" @click="iconAdd">
-        <mu-icon value="add" size="30"></mu-icon>
-      </mu-button>
-    </mu-appbar> 
-     <mu-drawer :open.sync="open" :docked="docked" :right="position === 'right'">
-     
-        <mu-form ref="form" :model="row" class="mu-demo-form">
+  <mu-container>
+  <mu-bottom-nav>
+    <mu-bottom-nav-item title="home" icon="home"></mu-bottom-nav-item>
+    <mu-bottom-nav-item title="Favorites" icon="favorite"></mu-bottom-nav-item>
+    <mu-bottom-nav-item title="Nearby" icon="location_on"></mu-bottom-nav-item> 
+    <mu-bottom-nav-item title="Books" icon="books"></mu-bottom-nav-item>
+    <mu-bottom-nav-item title="Pictures" icon="photo"></mu-bottom-nav-item>
 
-          <p  :style="{display:table=='ta'?'none':''}">   
-             <mu-form-item label="日期"  > <mu-date-input v-model="row.date" /> </mu-form-item>
-          </p>
-          <p  :style="{display:table=='ta'?'':'none'}">   
-          <mu-form-item label="商品编号" > <mu-text-field v-model="row.number" /> </mu-form-item>
-          <mu-form-item label="商品名称" > <mu-text-field v-model="row.name" /></mu-form-item>
-          <mu-form-item label="型号"  > <mu-text-field v-model="row.mark" ></mu-text-field> </mu-form-item>
-          <mu-form-item label="库存单位"  > <mu-text-field v-model="row.unit" ></mu-text-field> </mu-form-item>
-          <mu-form-item label="仓位"  > <mu-text-field v-model="row.store" ></mu-text-field> </mu-form-item>
-          <mu-form-item label="存放位置"  > <mu-text-field v-model="row.position" ></mu-text-field> </mu-form-item> 
-          </p>
-          <p  :style="{display:table=='tb'?'':'none'}">   
-          <mu-form-item label="名称"  > <mu-text-field v-model="row.name" /> </mu-form-item>
-          <mu-form-item label="规格"  > <mu-text-field v-model="row.guige"/></mu-form-item>
-          <mu-form-item label="数量"  > <mu-text-field v-model="row.number" type="number" /> </mu-form-item>
-          <mu-form-item label="单位"  > <mu-text-field v-model="row.unit" /> </mu-form-item>
-          <mu-form-item label="领用人"  > <mu-text-field v-model="row.person"/> </mu-form-item> 
-          </p>
-          <p  :style="{display:table=='tc'?'':'none'}">   
-          <mu-form-item label="名称"  > <mu-text-field v-model="row.name" /> </mu-form-item>
-          <mu-form-item label="规格"  > <mu-text-field v-model="row.guige" /> </mu-form-item>
-          <mu-form-item label="型号"  > <mu-text-field v-model="row.type" /> </mu-form-item>
-          <mu-form-item label="需求量"  > <mu-text-field v-model="row.need" type="number"/> </mu-form-item>
-          <mu-form-item label="已备量"  > <mu-text-field v-model="row.finish"  type="number"/> </mu-form-item>
-          <mu-form-item label="单位"  > <mu-text-field v-model="row.unit" /> </mu-form-item>
-          <mu-form-item label="用途"  > <mu-text-field v-model="row.usefor" /> </mu-form-item>
-          </p>
-          <p  :style="{display:table=='td'?'':'none'}">   
-          <mu-form-item label="规格"  > <mu-text-field v-model="row.guige" /> </mu-form-item>
-          <mu-form-item label="名称"  > <mu-text-field v-model="row.name" /> </mu-form-item>
-          <mu-form-item label="需求量"  > <mu-text-field v-model="row.need" type="number"/> </mu-form-item>
-          <mu-form-item label="完成量"  > <mu-text-field v-model="row.finish" type="number" /> </mu-form-item>
-          <mu-form-item label="单位"  > <mu-text-field v-model="row.unit" /> </mu-form-item> 
-          <mu-form-item label="地点"  > <mu-text-field v-model="row.position" /></mu-form-item> 
-          </p>
-          <p  :style="{display:table=='te'?'':'none'}">   
-          <mu-form-item label="姓名"  > <mu-text-field v-model="row.name" /> </mu-form-item>
-          <mu-form-item label="工艺"  > <mu-text-field v-model="row.gongyi" /></mu-form-item>
-          <mu-form-item label="数量"  > <mu-text-field v-model="row.number" type="number" /></mu-form-item>
-          <mu-form-item label="工时"  > <mu-text-field v-model="row.time" type="number" /></mu-form-item>
-          <mu-form-item label="地点"  > <mu-text-field v-model="row.position" /></mu-form-item> 
-          </p>
-          <mu-text-field v-model="row.desc" multi-line :rows="4" icon="comment"  placeholder="备注"/><br/>
-          <mu-form-item> <mu-button @click="clear">重置</mu-button> <mu-button color="primary" @click="submit">提交</mu-button> </mu-form-item>
-        </mu-form>  
-    </mu-drawer>
-    
-
-    <div class="mu-text-field mu-input-content" style="margin:10px 5px"> 
-         <input :placeholder="info" tabindex="0" v-model="search" class="mu-text-field-input my-search-input">
-         <mu-button color="red" @click="searchData" style="margin:0 10px 0 0;font-size:18px"> 查询 <mu-icon right value="search"></mu-icon> </mu-button>
-    </div>
-
-    <mu-dialog title="提示" width="360" :open.sync="openSimple">
-     确定删除此记录？
-    <mu-button slot="actions" flat color="info" @click="closeSimpleDialog">取消</mu-button>
-	  <mu-button slot="actions"   color="primary" @click="buttonDelete">确定</mu-button>
-  </mu-dialog>
-
-
-     <mu-data-table height="300" border stripe  :min-col-width="70" :columns="columns" :sort.sync="sort" @sort-change="handleSortChange" :data="list">
-      
-      <template slot-scope="scope">
-        <td :style="{display:scope.row.hasOwnProperty('date')?'':'none',width:'90px'}">{{scope.row.date?scope.row.date.substr(0,10):''}}</td>
-        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.number}}</td>
-        <td :style="{display:['ta','tb','tc','te',].includes(table) ?'':'none'}">{{scope.row.name}}</td>
-        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.mark}}</td>
-        <td :style="{display:table =='ta'?'':'none',width:'40px'}">{{scope.row.unit}}</td>
-        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.store}}</td>
-        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.position}}</td>
-        <td :style="{display:table =='ta'?'':'none'}">{{scope.row.type}}</td> 
-
-        <td :style="{display:table =='tb'?'':'none'}">{{scope.row.guige}}</td>
-        <td :style="{display:table =='tb'?'':'none'}">{{scope.row.number}}</td>
-        <td :style="{display:table =='tb'?'':'none',width:'40px'}">{{scope.row.unit}}</td>
-        <td :style="{display:table =='tb'?'':'none'}">{{scope.row.person}}</td> 
-        
-        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.guige}}</td>
-        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.type}}</td>
-        <td :style="{display:table =='tc'?'':'none',width:'40px'}">{{scope.row.finish}}</td>
-        <td :style="{display:table =='tc'?'':'none',width:'40px'}">{{scope.row.need}}</td>
-        <td :style="{display:table =='tc'?'':'none',width:'40px'}">{{scope.row.unit}}</td>
-        <td :style="{display:table =='tc'?'':'none'}">{{scope.row.usefor}}</td> 
-        
-        <td :style="{display:table =='td'?'':'none'}">{{scope.row.name}}</td>
-        <td :style="{display:table =='td'?'':'none'}">{{scope.row.guige}}</td>
-        <td :style="{display:table =='td'?'':'none',width:'40px'}">{{scope.row.need}}</td>
-        <td :style="{display:table =='td'?'':'none',width:'40px'}">{{scope.row.finish}}</td>
-        <td :style="{display:table =='td'?'':'none',width:'40px'}">{{scope.row.unit}}</td> 
-        <td :style="{display:table =='td'?'':'none'}">{{scope.row.position}}</td> 
-        
-        <td :style="{display:table =='te'?'':'none'}"> {{scope.row.gongyi}}</td>
-        <td :style="{display:table =='te'?'':'none',width:'40px'}"> {{scope.row.number}}</td>
-        <td :style="{display:table =='te'?'':'none',width:'40px'}"> {{scope.row.time}}</td>
-        <td :style="{display:table =='te'?'':'none'}"> {{scope.row.position}}</td> 
-          
-       
-        <td >{{scope.row.desc}}</td>
-        <td >
-          <a @click="deleteLine(scope.row)" class="a-delete">删除</a><br>
-          <a @click="updateLine(scope.row)">修改</a>
-        </td>
-      </template>
-    </mu-data-table>
-    <mu-flex justify-content="center" style="margin: 32px 0;">
-        <mu-pagination raised :total="total" :current.sync="current" @change="change"></mu-pagination>
-    </mu-flex>
-
+  </mu-bottom-nav>
+</mu-container>
   </div>
 </template>
 

@@ -70,7 +70,7 @@ class controllerExcel extends Controller {
     switch(table){
       case 'ta': where += `number like '%${search}%' or name like '%${search}%' or position like '%${search}%' `; break;
       case 'tb': where += `  name like '%${search}%' order by date desc `; break;
-      case 'tc': where += `  name like '%${search}%'  order by date desc  `; break;
+      case 'tc': where += `  name like '%${search}%'  or type like '%${search}%' order by date desc  `; break;
       case 'td': where += `  position like '%${search}%' or position like '%${search}%'  order by date desc  `; break;
       case 'te': where += `  name like '%${search}%' or position like '%${search}%' order by date desc  `; break;
     }
