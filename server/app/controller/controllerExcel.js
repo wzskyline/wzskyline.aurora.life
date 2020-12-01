@@ -73,6 +73,7 @@ class controllerExcel extends Controller {
       case 'tc': where += `  name like '%${search}%'  or type like '%${search}%' order by date desc  `; break;
       case 'td': where += `  position like '%${search}%' or position like '%${search}%'  order by date desc  `; break;
       case 'te': where += `  name like '%${search}%' or position like '%${search}%' order by date desc  `; break;
+      case 'cp': where += `  code like '%${search}%'   order by id desc  `; break;
     }
     count = await this.app.mysql.query(`select count(id) as count from ${table} ${where}  `)
     data = await this.app.mysql.query(`select * from  ${table}  ${where}  limit ${(page-1)* pageSize},${1*pageSize}`);
