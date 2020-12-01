@@ -9,6 +9,7 @@
   "dependencies": {
     "@ant-design/pro-table": "^2.10.1",
     "antd-mobile": "^2.3.4",
+    "cheerio": "^1.0.0-rc.3",
     "egg": "^2.15.1",
     "egg-cors": "^2.2.3",
     "egg-mysql": "^3.0.0",
@@ -16,7 +17,8 @@
     "egg-view": "^2.1.2",
     "egg-view-ejs": "^2.0.0",
     "ejs": "^2.7.1",
-    "node-xlsx": "^0.15.0"
+    "node-xlsx": "^0.15.0",
+    "superagent": "^6.1.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",

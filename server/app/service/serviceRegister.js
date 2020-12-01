@@ -10,6 +10,16 @@ class ServiceRegisterService extends Service {
     await this.app.mysql.insert('register', { username, password });
     console.log(username + '......' + password);
   }
+  async InsertDatabase2(arr) {
+    console.log('=================',arr.length); 
+    for(let i = 1;  i <  arr.length ;i++){   
+      const sel = await this.app.mysql.get('cp', { code:arr[i].code });
+      console.log('=================',sel); 
+      if(!sel){
+        await this.app.mysql.insert('cp',arr[i]);
+      }
+    } 
+  }
 }
 
 module.exports = ServiceRegisterService;
