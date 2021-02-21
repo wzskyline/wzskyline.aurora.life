@@ -43,3 +43,10 @@ th,td{
 .is-hover{
   background-color: #2196f3!important;
 }
+/*   */
+.boll{ width: 30px!important;height: 30px!important; background-color: red;margin: 1px;}
+.cboll{ width: 30px!important;height: 30px!important; background-color: #CCC;margin: 1px;}
+.wzskyline .mu-carousel{ height: 20vh!important;}
+text{
+  font-size: 12px;
+}

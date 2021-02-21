@@ -2,9 +2,12 @@
   <div id="app"> 
     <div class="content">
       <router-view/>
-    </div>
-    <mu-container style="width:100%;padding:0"> 
-    </mu-container> 
+    </div>  
+   <mu-bottom-nav  class="nav" :style="{display:nav?'none':''}">
+      <mu-bottom-nav-item title="首页" icon="home" to='/Home'></mu-bottom-nav-item>
+      <mu-bottom-nav-item title="广场" icon="explore"  to='/Ground'></mu-bottom-nav-item> 
+      <mu-bottom-nav-item title="我的" icon="account_circle"  to='/My'></mu-bottom-nav-item> 
+  </mu-bottom-nav>
   </div>
 </template>
 <script>
@@ -13,6 +16,7 @@ export default {
     return {
       shift: 'home',
       headbar:"",
+      nav:true,
       bar:{
         "banner":"首页",
         "music":"音乐",
@@ -24,6 +28,14 @@ export default {
   },
   components:{
      
+  },
+  updated(){
+  console.log(1)
+       this.nav = 'Home,My,Ground'.includes(this.$router.history.current.name)
+  },
+  mounted(){
+      console.log(1)
+       this.nav = 'Home,My,Ground'.includes(this.$router.history.current.name)
   },
   watch:{
     "$route.path":function(newr,oldr){
@@ -44,17 +56,12 @@ height:100%;
 margin: 0;
 padding: 0;
 }
-#app {
-  font-family:"Roboto";
-  height:100vh;
-  width:100vw;
-  position:relative;
-  .container{
-    position: fixed;
-    bottom:0;
-    left:0;
-  }
-
+.content{
+  width: 100vw;
+  height: 90vh;
 }
-
+.nav{
+  height: 10vh!important;
+  width: 100vw!important;
+}
 </style>

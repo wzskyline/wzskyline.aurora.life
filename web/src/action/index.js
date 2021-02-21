@@ -7,6 +7,9 @@ export const urls={
   updateExcel:`${host}/updateExcel`,
   addOneExcel:`${host}/addOneExcel`,
   deleteTable:`${host}/deleteTable`,
+
+  gameUserByFp:`${host}/gameUserByFp`,
+  gameUser:`${host}/gameUser`,
 }
 
 const safeFetch = async (url,method,postData,headers)=>{
@@ -43,6 +46,14 @@ export const  addOneExcel = async (table,obj)=>{
 export const  deleteTable = async (table)=>{
   const res = await safeFetch(`${urls.deleteTable}?table=${table}&id=${table}`); return res;
 }
+export const  gameUser = async (arg)=>{
+  let url = `${urls.gameUser}?fp=${arg.fp}&desc=${arg.desc}&name=${arg.name}`
+  const res = await safeFetch(url); return res;
+}
+export const  gameUserByFp = async (arg)=>{
+  let url = `${urls.gameUserByFp}?fp=${arg.fp}&d=${arg.date}`
+  const res = await safeFetch(url); return res;
+}
 export default {
-  getExcelJosn,deleteExcel,updateExcel,addOneExcel,deleteTable
+  getExcelJosn,deleteExcel,updateExcel,addOneExcel,deleteTable,gameUser,gameUserByFp
 }

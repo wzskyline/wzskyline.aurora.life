@@ -11,7 +11,16 @@ export default new Router({
     { path: '/Delete', name: 'Delete', component:()=>import("@/appPages/Delete") },
 
 
-    { path: '/', name: '/', component:()=>import("@/wzskyline/Home") },
+    //{ path: '/', name: '/', component:()=>import("@/wzskyline/Home") },
+    { path: '/Home', name: 'Home', component:()=>import("@/wzskyline/Home") },
+    { path: '/Ground', name: 'Ground', component:()=>import("@/wzskyline/Ground") },
+    { path: '/My', name: 'My', component:()=>import("@/wzskyline/My") },
+    { path: '/MyList', name: 'MyList', component:()=>import("@/wzskyline/MyList") },
+    { path: '/MyAccount', name: 'MyAccount', component:()=>import("@/wzskyline/MyAccount") },
+    { path: '/Detail', name: 'Detail', component:()=>import("@/wzskyline/Detail") },
+
+    { path: '/', name: '', component:()=>import("@/subWays/Home") },
+     
 
   ] 
 })
